@@ -7,6 +7,7 @@ def monitoring(root_directory):
     darab = []
     os.system("cls")
     mappak = os.listdir(root_directory)
+    mappak.remove(".klaszter")
 
     for i in range(len(mappak)):
         print(mappak[i])
