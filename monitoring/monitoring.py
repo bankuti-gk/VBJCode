@@ -1,12 +1,12 @@
 import os
 
-def monitoring(root_directory):
+def monitoring(cluster_path):
     os.system("cls")
-    directories = [dir for dir in os.listdir(root_directory) if dir != ".klaszter"]
+    directories = [dir for dir in os.listdir(cluster_path) if dir != ".klaszter"]
     
     for dir in directories:
         print(dir)
-        config_path = os.path.join(root_directory, dir, ".szamitogep_config")
+        config_path = os.path.join(cluster_path, dir, ".szamitogep_config")
 
         if not os.path.isfile(config_path):
             print(f"Hiba! Nincs konfigurációs fájl itt: {config_path}")
@@ -15,7 +15,7 @@ def monitoring(root_directory):
         with open(config_path) as config_file:
             config = [int(line.strip()) for line in config_file]
 
-        files = [file for file in os.listdir(os.path.join(root_directory, dir)) if file != ".szamitogep_config"]
+        files = [file for file in os.listdir(os.path.join(cluster_path, dir)) if file != ".szamitogep_config"]
 
         print(f"\tMAX \tElérhető")
 
@@ -25,7 +25,7 @@ def monitoring(root_directory):
             ram_usage = 0
 
             for file in files:
-                file_path = os.path.join(root_directory, dir, file)
+                file_path = os.path.join(cluster_path, dir, file)
                 with open(file_path) as file:
                     data = file.readlines()
                     cpu_usage += int(data[2].strip())

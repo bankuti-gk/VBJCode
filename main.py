@@ -6,25 +6,23 @@ from management import add_instance
 
 def main():
     user_input = ""
-    root_directory = ""
     while True:
-        cluster_name = input("Add meg a cluster mappa nevét: ")
-        root_directory = os.path.join(os.getcwd(), cluster_name)
-        if os.path.exists(root_directory):
+        cluster_path = input("Add meg a cluster mappa pontos elérési útvonalát: ")
+        if os.path.exists(cluster_path):
             break
         else:
-            print(f"Hiba! Nem található {cluster_name} nevű mappa a jelenlegi könyvtárban. ({os.getcwd()})")
+            print(f"Hiba! Nem található mappa a megadott útvonalon: {cluster_path}")
 
     while user_input.lower() != "stop":
-        run_checks(root_directory)
+        run_checks(cluster_path)
         os.system("cls")
         display_menu()
         user_input = input()
         if user_input == "1":
-            monitoring(root_directory)
+            monitoring(cluster_path)
             input()
         elif user_input == "2":
-            add_instance(root_directory)
+            add_instance(cluster_path)
     os.system("cls")
 
 if __name__ == "__main__":

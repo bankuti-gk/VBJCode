@@ -1,2 +1,2 @@
-def run_checks(root_directory):     # Ellenőrzi a cluster állapotát
+def run_checks(cluster_path):     # Ellenőrzi a cluster állapotát
     pass
