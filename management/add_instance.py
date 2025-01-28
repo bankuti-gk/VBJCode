@@ -2,6 +2,7 @@ import os
 import string
 
 def add_instance(cluster_path):
+    os.system("cls")
     name = input("Add meg a számítógép nevét: ")
     resources = [int(x) for x in input("Add meg a millimagok számát és memóriakapacitást (MB) szóközzel elválasztva: ").split()]
     valid_characters = list(string.ascii_letters) + list(string.digits)

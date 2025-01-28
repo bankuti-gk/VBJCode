@@ -2,10 +2,16 @@ import os
 
 from monitoring import monitoring
 from utilities import display_menu, run_checks
-from management import add_instance
+from management import add_instance, delete_instance
+
+possible_inputs = {
+    1 : monitoring,
+    2 : add_instance,
+    3 : delete_instance
+}
+
 
 def main():
-    user_input = ""
     while True:
         cluster_path = input("Add meg a cluster mappa pontos elérési útvonalát: ")
         if os.path.exists(cluster_path):
@@ -13,17 +19,18 @@ def main():
         else:
             print(f"Hiba! Nem található mappa a megadott útvonalon: {cluster_path}")
 
-    while user_input.lower() != "stop":
-        run_checks(cluster_path)
+    while True:
         os.system("cls")
+        run_checks(cluster_path)
         display_menu()
-        user_input = input()
-        if user_input == "1":
-            monitoring(cluster_path)
+        user_input = int(input())
+        if user_input in possible_inputs:
+            possible_inputs[user_input](cluster_path)
+        elif user_input == 0:
+            break
+        else:
+            print("Érvénytelen választás!")
             input()
-        elif user_input == "2":
-            add_instance(cluster_path)
-    os.system("cls")
 
 if __name__ == "__main__":
     main()

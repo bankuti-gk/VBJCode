@@ -3,13 +3,14 @@ import os
 def monitoring(cluster_path):
     os.system("cls")
     directories = [dir for dir in os.listdir(cluster_path) if dir != ".klaszter"]
-    
+
     for dir in directories:
         print(dir)
         config_path = os.path.join(cluster_path, dir, ".szamitogep_config")
 
         if not os.path.isfile(config_path):
             print(f"Hiba! Nincs konfigurációs fájl itt: {config_path}")
+            input()
             exit()
 
         with open(config_path) as config_file:
@@ -33,5 +34,5 @@ def monitoring(cluster_path):
             print(f"\t{max_cpu}\t{cpu_usage}")
             print(f"\t{max_ram}\t{ram_usage}")
         print()
-
+    input()
     return
