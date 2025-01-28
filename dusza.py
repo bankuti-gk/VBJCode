@@ -44,8 +44,6 @@ def add_instance(root_directory):
 
     instance_path = os.path.join(root_directory, name)
 
-    print(instance_path)
-
     if os.path.isdir(instance_path):
         print(f"Ilyen nevű számítógép már létezik! ({name})")
         input()
