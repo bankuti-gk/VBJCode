@@ -1,4 +1,3 @@
-from .add_instance import add_instance
-from .delete_instance import delete_instance
+from .instance_management import *
 
 # ehhez ne nyulj mert osszeomlik a program

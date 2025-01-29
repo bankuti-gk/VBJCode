@@ -1,3 +1,5 @@
+# C:\Users\Lamen\Documents\cluster0
+
 import os
 
 from monitoring import monitoring
@@ -12,8 +14,9 @@ possible_inputs = {
 
 
 def main():
+    os.system("title Cluster Command Center")
     while True:
-        cluster_path = input("Add meg a cluster mappa pontos elérési útvonalát: ")
+        cluster_path = input("Add meg a cluster mappa pontos elérési útvonalát: ").strip()
         if os.path.exists(cluster_path):
             break
         else:
@@ -23,14 +26,38 @@ def main():
         os.system("cls")
         run_checks(cluster_path)
         display_menu()
-        user_input = int(input())
+
+        user_input = input().strip()
+        
+        # <-------------------------------------------------->
+        # ez a rész érvényesíti az inputot
+
+        if not user_input:
+            print("\nHIBA: Nem lehet üres az input.")
+            input("Nyomj meg egy gombot a folytatáshoz..")
+            continue
+
+        if not user_input.isdigit():
+            print("\nHIBA: Kérlek, egy számot adj meg.")
+            input("Nyomj meg egy gombot a folytatáshoz..")
+            continue
+
+        # <-------------------------------------------------->
+
+        user_input = int(user_input)    # átalakítja az inputot integerré, hogy tudjon vele dolgozni
+
+        if user_input == 0:
+            break
+
         if user_input in possible_inputs:
             possible_inputs[user_input](cluster_path)
-        elif user_input == 0:
-            break
+            os.system("cls")
+        
         else:
-            print("Érvénytelen választás!")
-            input()
+                print("\nHIBA: Érvénytelen választás! (ha ezt a hibat kapod valami nagyon nem jo)")
+                input("Nyomj egy gombot a folytatáshoz...")
+                continue
+        
 
 if __name__ == "__main__":
     main()
