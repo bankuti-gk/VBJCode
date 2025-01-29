@@ -46,6 +46,18 @@ def delete_instance(cluster_path):
         print("Érvénytelen ID!")
         input()
         return
-
+    
     print(f"\nVálasztott gép:\nID: {computer_id + 1}\tNév: {computers[computer_id]}")
+
+    processes = [process for process in os.listdir(cluster_path + "\\" + computers[computer_id]) if process != ".szamitogep_config"]
+    if processes:
+        print(f"Hiba: Létezik futó folyamat a számítógépen!")
+        for process in processes:
+            with open(cluster_path + "\\" + computers[computer_id] + "\\" + process, encoding="utf-8") as p:
+                data = p.readlines()
+            print(f"Név:\t{process}\nIndítás ideje:\t{data[0].strip()}\nStátusz:\t{data[1].strip()}")
+    else:
+        print(f"\nGép törölve: {computers[computer_id]}")
+        rmtree(cluster_path + "\\" + computers[computer_id])
+    
     input()

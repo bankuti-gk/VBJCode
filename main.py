@@ -33,7 +33,7 @@ def main():
         # ez a rész érvényesíti az inputot
 
         if not user_input:
-            print("\nHIBA: Nem lehet üres az input.")
+            print("HIBA: Nem lehet üres az input.")
             input("Nyomj meg egy gombot a folytatáshoz..")
             continue
 

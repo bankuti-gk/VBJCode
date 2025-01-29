@@ -1,4 +1,4 @@
 from .display_menu import display_menu
-from .run_checks import run_checks
+from .checks import *
 
 # ehhez ne nyulj mert osszeomlik a program
