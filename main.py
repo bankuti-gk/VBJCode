@@ -16,18 +16,21 @@ possible_inputs = {
 def main():
     os.system("title Cluster Command Center")
     while True:
-        cluster_path = input("Add meg a cluster mappa pontos elérési útvonalát: ").strip()
+        os.system("cls")
+        print("Add meg a cluster pontos útvonalát!")
+        cluster_path = user_input = input(">> ").strip()
         if os.path.exists(cluster_path):
             break
         else:
             print(f"Hiba! Nem található mappa a megadott útvonalon: {cluster_path}")
+            input()
 
     while True:
         os.system("cls")
         run_checks(cluster_path)
         display_menu()
 
-        user_input = input().strip()
+        user_input = input(">> ").strip()
         
         # <-------------------------------------------------->
         # ez a rész érvényesíti az inputot
