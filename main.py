@@ -1,5 +1,3 @@
-# C:\Users\Lamen\Documents\cluster0
-
 import os
 
 from monitoring import monitoring
