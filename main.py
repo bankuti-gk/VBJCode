@@ -1,13 +1,15 @@
+# D:\Progamozás\Programok\Dusza\duszakiralycsapat\cluster0
 import os
 
 from monitoring import monitoring
 from utilities import display_menu, run_checks
-from management import add_instance, delete_instance
+from management import add_instance, delete_instance, program_leallitas
 
 possible_inputs = {
     1 : monitoring,
     2 : add_instance,
-    3 : delete_instance
+    3 : delete_instance,
+    4 : program_leallitas
 }
 
 
