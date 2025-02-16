@@ -2,6 +2,7 @@ import random
 import string
 from utilities import search
 import os
+import datetime
 
 def clear():
     os.system("cls")
@@ -80,3 +81,62 @@ def program_modositas(cluster_path):
         else:
             config.writelines(program)
     input("Program adatai módosítva")
+
+def uj_peldany(cluster_path):
+    ido = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    clear()
+    print("Melyik számítógépen akarod futtatni az új peogrampáldányt?")
+    directories = [dir for dir in os.listdir(cluster_path) if dir != ".klaszter"]
+    for i in range(len(directories)):
+        print(f"\t{i+1}: {directories[i]}")
+    gepID = int(input(">> "))-1
+
+
+    clear()
+    print("Melyik programból akarsz egy új példányt futtatni?")
+    klaszter = open(cluster_path+f"\\.klaszter", "r", encoding="UTF-8")
+    sorok = klaszter.readlines()
+    programok = []
+    program_millimag = []
+    program_memoriahasznalat = []
+    for i in range(int(len(sorok)/4)):
+        program = []
+        for ii in range(4):
+            program.append(sorok[i*4+ii])
+        programok.append(program[0])
+        program_millimag.append(program[2])
+        program_memoriahasznalat.append(program[3])
+        print(f"\t{i+1}: {program[0].strip()}")
+    programID = int(input(">> "))-1
+
+    gep_hely = cluster_path +f"\\{directories[gepID]}"
+    dirs =[dir for dir in os.listdir(gep_hely) if dir != ".szamitogep_config"]
+    millimag_hasznalt = 0
+    memoria_hasznalt = 0
+    for i in range(len(dirs)):
+        with open(gep_hely + f"\\{dirs[i]}", "r", encoding="UTF-8") as file:
+            file_sor = file.readlines()
+            millimag_hasznalt += int(file_sor[2])
+            memoria_hasznalt += int(file_sor[3])
+
+    vege_volt = []
+    for i in range(len(dirs)):
+        if programok[programID].strip() == dirs[i].split("-")[0]:
+            vege_volt.append(dirs[i].split("-")[1])
+    print(vege_volt)
+    input()
+
+    betuk = ["q","w","e","r","t","z","u","i","o","p","a","s","d","f","g","h","j","k","l","y","x","c","v","b","n","m"]
+    vege = ""
+    for i in range(6):
+        vege += betuk[random.randint(0, 25)]
+    while vege in vege_volt:
+        vege = ""
+        for i in range(6):
+            vege += betuk[random.randint(0, 25)]
+    with open(cluster_path+f"\\{directories[gepID]}\\{programok[programID].strip()}-{vege}", "w", encoding="UTF-8") as irni:
+        irni.write(f"{ido}\nAKTÍV\n{program_millimag[programID]}{program_memoriahasznalat[programID].strip()}")
+    
+
+    clear()
+    input("Új programéldány futtatva.")

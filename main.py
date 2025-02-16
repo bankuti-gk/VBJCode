@@ -3,14 +3,15 @@ import os
 
 from monitoring import monitoring
 from utilities import display_menu, run_checks
-from management import add_instance, delete_instance, program_leallitas, program_modositas
+from management import add_instance, delete_instance, program_leallitas, program_modositas, uj_peldany
 
 possible_inputs = {
     1 : monitoring,
     2 : add_instance,
     3 : delete_instance,
     4 : program_leallitas,
-    5 : program_modositas
+    5 : program_modositas,
+    6 : uj_peldany
 }
 
 
