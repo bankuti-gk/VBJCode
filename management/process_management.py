@@ -140,3 +140,21 @@ def uj_peldany(cluster_path):
 
     clear()
     input("Új programéldány futtatva.")
+
+def peldany_leallitas(cluster_path):
+    clear()
+    print("Melyik számítógépen akarod leállítani a programpéldányt?")
+    directories = [dir for dir in os.listdir(cluster_path) if dir != ".klaszter"]
+    for i in range(len(directories)):
+        print(f"\t{i+1}: {directories[i]}")
+    gepID = int(input(">> "))-1
+
+    gep_hely = cluster_path + f"\\{directories[gepID]}"
+
+    dirs =[dir for dir in os.listdir(gep_hely) if dir != ".szamitogep_config"]
+    for i in range(len(dirs)):
+        print(f"\t{i+1}: {dirs[i]}")
+    programId = int(input(">> "))-1
+
+    os.remove(gep_hely + f"\\{dirs[programId]}")
+    input("Program leállítva")
