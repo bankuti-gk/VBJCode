@@ -31,8 +31,8 @@ def monitoring(cluster_path):
                     data = file.readlines()
                     cpu_usage += int(data[2].strip())
                     ram_usage += int(data[3].strip())
-            print(f"\t{max_cpu}\t{cpu_usage}")
-            print(f"\t{max_ram}\t{ram_usage}")
+            print(f"\t{max_cpu}\t{max_cpu - cpu_usage}")
+            print(f"\t{max_ram}\t{max_ram - ram_usage}")
         print()
     input()
     return
