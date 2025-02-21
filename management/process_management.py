@@ -63,7 +63,6 @@ def program_modositas(cluster_path):
                     sorok[3] = memoria
                     file.writelines(sorok)
     
-    klaszter = cluster_path + "\\.klaszter"
     klaster = cluster_path + "\\.klaszter"
     config = open(klaster, "r+", encoding="UTF-8")
     config_sorok = config.readlines()
@@ -122,9 +121,7 @@ def uj_peldany(cluster_path):
     vege_volt = []
     for i in range(len(dirs)):
         if programok[programID].strip() == dirs[i].split("-")[0]:
-            vege_volt.append(dirs[i].split("-")[1])
-    print(vege_volt)
-    input()
+            vege_volt.append(dirs[i].split("-")[1]) 
 
     betuk = ["q","w","e","r","t","z","u","i","o","p","a","s","d","f","g","h","j","k","l","y","x","c","v","b","n","m"]
     vege = ""
