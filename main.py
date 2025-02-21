@@ -1,8 +1,8 @@
-# D:\Progamozás\Programok\Dusza\duszakiralycsapat\cluster0
 import os
+import threading
 
 from monitoring import monitoring
-from utilities import display_menu, run_checks
+from utilities import display_menu, run_checks, create_window
 from management import add_instance, delete_instance, program_leallitas, program_modositas, uj_peldany, peldany_leallitas
 
 possible_inputs = {
@@ -17,6 +17,9 @@ possible_inputs = {
 
 
 def main():
+    x = threading.Thread(target=create_window)
+    x.start()
+    
     os.system("title Cluster Command Center")
     while True:
         os.system("cls")
